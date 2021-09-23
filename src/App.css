@@ -1,38 +1,79 @@
-.App {
+.app-container {
+  padding-top: 0rem;
+  text-align: center;
+  min-height: 100vh;
+}
+.app-container .header {
+  background-color: teal;
+  color: white;
+  font-size: 2.5rem;
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.movie-list-grid {
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 640px) {
+  .movie-list-grid {
+    padding: 1rem;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+@media (min-width: 740px) {
+  .movie-list-grid {
+    padding: 2rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+@media (min-width: 1080px) {
+  .movie-list-grid {
+    padding: 3rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+@media (min-width: 1280pxpx) {
+  .movie-list-grid {
+    padding: 3rem;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+.sort-items {
+  display: flex;
+  margin-top: 3rem;
+  justify-content: center;
+  gap: 2rem;
+}
+.sort-items .sort-title {
+  font-size: 1.5rem;
+}
+.card-item-content .title {
+  font-size: 1rem;
+}
+.card-item-content .footer {
+  display: flex;
+  justify-content: space-between;
+}
+.card-item-content .footer .left-content {
+  align-self: flex-end;
+}
+.card-item-content .footer .left-content > p {
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+.loading-spinner {
+  padding-top: 10rem;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.load-more {
+  text-align: center;
+  margin-top: 5rem;
+  padding-bottom: 5rem;
 }

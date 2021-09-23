@@ -1,24 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import "antd/dist/antd.css";
+import { fetchAll } from "./components/fetchApi";
+import { CardItem } from "./components/CardItem";
+import { TitleSort } from "./components/TitleSort";
+import { RatingSort } from "./components/RatingSort";
+import { Button, Spin } from "antd";
 
 function App() {
+  const [movieList, setMovieList]: any = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  useEffect(() => {
+    fetchAll(setMovieList, setLoading);
+  }, []);
+
+  const handleStar = (id: any) => {
+    if (localStorage.getItem("" + id) === "true") {
+      setMovieList(
+        movieList?.map((item: any) =>
+          item?.id === id ? { ...item, star: false } : item
+        )
+      );
+      localStorage.setItem("" + id, "false");
+    } else {
+      setMovieList(
+        movieList?.map((item: any) =>
+          item?.id === id ? { ...item, star: true } : item
+        )
+      );
+      localStorage.setItem("" + id, "true");
+    }
+  };
+  if (loading)
+    return (
+      <div className="loading-spinner">
+        <Spin size={"large"} />
+      </div>
+    );
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="app-container">
+      <div className="header">Top 500 Movies of all Time</div>
+      <div className="sort-items">
+        <p className="sort-title">Sort By:</p>
+        <TitleSort movieList={movieList} setMovieList={setMovieList} />
+        <RatingSort movieList={movieList} setMovieList={setMovieList} />
+      </div>
+
+      <div className="movie-list-grid">
+        {movieList?.slice(0, currentPage * 20).map((item: any, index: any) => (
+          <CardItem key={item?.id} item={item} handleStar={handleStar} />
+        ))}
+      </div>
+      <div className="load-more">
+        <Button
+          type="primary"
+          disabled={currentPage === 25}
+          onClick={() => setCurrentPage(currentPage + 1)}
         >
-          Learn React
-        </a>
-      </header>
+          Load More
+        </Button>
+      </div>
     </div>
   );
 }
