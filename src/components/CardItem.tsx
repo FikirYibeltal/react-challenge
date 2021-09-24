@@ -28,7 +28,7 @@ export const CardItem = ({
               "_blank noreferrer noopener"
             )
           }
-          alt="example"
+          alt={item?.title}
           style={{ width: "100%" }}
           src={`https://image.tmdb.org/t/p/w200/${item?.backdrop_path}`}
         />
