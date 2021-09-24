@@ -6,6 +6,7 @@ import { CardItem } from "./components/CardItem";
 import { TitleSort } from "./components/TitleSort";
 import { RatingSort } from "./components/RatingSort";
 import { Button, Spin } from "antd";
+import { movieType } from "./models/movieType";
 
 function App() {
   const [movieList, setMovieList]: any = useState([]);
@@ -25,7 +26,7 @@ function App() {
       localStorage.setItem("" + id, "false");
     } else {
       setMovieList(
-        movieList?.map((item: any) =>
+        movieList?.map((item: movieType) =>
           item?.id === id ? { ...item, star: true } : item
         )
       );

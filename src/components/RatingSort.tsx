@@ -1,12 +1,13 @@
 import { DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Menu } from "antd";
 import React from "react";
+import { movieType } from "../models/movieType";
 
 export const RatingSort = ({
   movieList,
   setMovieList,
 }: {
-  movieList: any;
+  movieList: movieType[];
   setMovieList: any;
 }) => {
   const handleRatingMenuClick = (e: any) => {
