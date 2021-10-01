@@ -1,12 +1,13 @@
 import { StarOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 import React from "react";
+import { movieType } from "../models/movieType";
 
 export const CardItem = ({
   item,
   handleStar,
 }: {
-  item: any;
+  item: movieType;
   handleStar: any;
 }) => {
   return (
